@@ -30,11 +30,11 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - "initech:CreateReport"
-                - "initech:DeleteReport"
-                - "initech:DescribeReport"
-                - "initech:ListReports"
-                - "initech:UpdateReport"
+                - "ocp:CreateCluster"
+                - "ocp:DeleteCluster"
+                - "ocp:DescribeCluster"
+                - "ocp:ListClusters"
+                - "ocp:UpdateCluster"
                 Resource: "*"
 Outputs:
   ExecutionRoleArn:

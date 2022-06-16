@@ -1,4 +1,4 @@
-# gitpod.io/#github.com/CaravanaCloud/red-pod
+# gitpod.io/#github.com/CaravanaCloud/cfn-ocp
 image:
   file: .gitpod.Dockerfile
 

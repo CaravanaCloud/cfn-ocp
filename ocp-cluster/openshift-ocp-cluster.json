@@ -1,0 +1,55 @@
+{
+    "typeName": "OpenShift::OCP::Cluster",
+    "description": "An example resource schema demonstrating some basic constructs and validation rules.",
+    "sourceUrl": "https://github.com/aws-cloudformation/aws-cloudformation-rpdk.git",
+
+    "properties": {
+
+        "ClusterName": {
+            "description": "OpenShift Cluster Name",
+            "type": "string",
+            "pattern": "^[A-Z]{3,5}[0-9]{8}-[0-9]{4}$"
+        }
+
+    },
+
+    "additionalProperties": false,
+    
+    "required": [
+        "ClusterName"
+    ],
+
+    "primaryIdentifier": ["/properties/ClusterName"],
+
+    "handlers": {
+        "create": {
+            "permissions": [
+                "ocp:CreateCluster"
+            ]
+        },
+
+        "read": {
+            "permissions": [
+                "ocp:DescribeCluster"
+            ]
+        },
+
+        "update": {
+            "permissions": [
+                "ocp:UpdateCluster"
+            ]
+        },
+
+        "delete": {
+            "permissions": [
+                "ocp:DeleteCluster"
+            ]
+        },
+
+        "list": {
+            "permissions": [
+                "ocp:ListClusters"
+            ]
+        }
+    }
+}
