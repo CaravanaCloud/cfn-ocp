@@ -12,6 +12,10 @@ aws iam create-role --role-name "$OCP_INSTALL_ROLE" \
 aws iam attach-role-policy --role-name "$OCP_INSTALL_ROLE" \
     --policy-arn "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"  
 
+
+aws iam attach-role-policy --role-name "$OCP_INSTALL_ROLE" \
+    --policy-arn "arn:aws:iam::aws:policy/AdministratorAccess"  
+
 aws iam create-instance-profile \
     --instance-profile-name "$OCP_INSTALL_PROFILE"
 
