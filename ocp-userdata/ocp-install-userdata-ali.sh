@@ -6,7 +6,7 @@ exec > >(tee /var/log/user-data.log | logger -t user-data -s 2>/dev/console) 2>&
   echo "Install logging agent"
   mkdir -p "/opt/aws/amazon-cloudwatch-agent/etc/"
   curl -s "https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm" --output "/tmp/amazon-cloudwatch-agent.rpm"
-  curl -s "https://github.com/CaravanaCloud/cfn-ocp/blob/main/ocp-userdata/ocp-install-cloudwatch.json" --output "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json"
+  curl -s "https://raw.githubusercontent.com/CaravanaCloud/cfn-ocp/main/ocp-userdata/ocp-install-cloudwatch.json" --output "/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json"
   rpm -Uvh "/tmp/amazon-cloudwatch-agent.rpm"
   rpm -qlp "/tmp/amazon-cloudwatch-agent.rpm"
   ls "/opt/aws"
