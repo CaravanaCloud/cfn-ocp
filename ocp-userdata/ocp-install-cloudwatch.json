@@ -1,0 +1,24 @@
+{
+    "logs": {
+      "logs_collected": {
+        "files": {
+          "collect_list": [
+            {
+              "file_path": "/var/log/user-data.log",
+              "log_group_name": "user-data.log",
+              "log_stream_name": "user-data.log",
+              "timezone": "UTC"
+            },
+            {
+              "file_path": "/opt/ocp_install/openshift_install.log",
+              "log_group_name": "openshift_install.log",
+              "log_stream_name": "openshift_install.log",
+              "timezone": "UTC"
+            }
+          ]
+        }
+      },
+      "log_stream_name": "ocp_install",
+      "force_flush_interval" : 15
+    }
+  }
