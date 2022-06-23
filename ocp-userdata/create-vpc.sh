@@ -80,5 +80,5 @@ echo "export IGW_ID=$IGW_ID"
 echo "export RTB_ID=$RTB_ID"
 echo "export NET_A=$NET_A"
 echo "export NET_B=$NET_B"
-echo "export OCP_INSTALL_SUBNET=$NETA"
+echo "export OCP_INSTALL_SUBNET=$NET_A"
 

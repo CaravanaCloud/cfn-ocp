@@ -31,7 +31,8 @@ exec > >(tee /var/log/user-data.log | logger -t user-data -s 2>/dev/console) 2>&
   curl -s "$OCP_INSTALL_CONFIG_URL" --output "/tmp/ocp/install-config.yaml"
 
   echo "Run installer"
-
+  /usr/local/bin/openshift-installer
+  
   echo "Terminate instance [$INSTANCE_ID]"
   aws ec2 terminate-instances --instance-ids $INSTANCE_ID --region $REGION
   
