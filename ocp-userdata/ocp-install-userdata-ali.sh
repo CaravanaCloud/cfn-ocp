@@ -22,18 +22,22 @@ exec > >(tee /var/log/user-data.log | logger -t user-data -s 2>/dev/console) 2>&
 
   echo "Load configuration from tags"
   mkdir -p '/tmp/ocp/openshift-installer'
-  TAG_NAME="OCP_INSTALL_CONFIG"
-  INSTANCE_ID=$(curl -s http://instance-data/latest/meta-data/instance-id)
   REGION=$(curl -s http://instance-data/latest/meta-data/placement/region)
+  INSTANCE_ID=$(curl -s http://instance-data/latest/meta-data/instance-id)
+
+  TAG_NAME="OCP_INSTALL_CONFIG"
   OCP_INSTALL_CONFIG_URL=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$TAG_NAME" --region $REGION --query "Tags[0].Value" --output=text)
-  
   echo "Dowloading install config [$OCP_INSTALL_CONFIG_URL]"
   curl -s "$OCP_INSTALL_CONFIG_URL" --output "/tmp/ocp/install-config.yaml"
 
-  echo "Run installer"
-  /usr/local/bin/openshift-installer
+  TAG_NAME="OCP_INSTALL_OPTS"
+  OCP_INSTALL_OPTS=$(aws ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=$TAG_NAME" --region $REGION --query "Tags[0].Value" --output=text)
+
+  OCP_INSTALL_CMD="/usr/local/bin/openshift-installer $OCP_INSTALL_OPTS"
+  echo "Run installer [$OCP_INSTALL_CMD]"
+  eval $OCP_INSTALL_CMD
   
-  echo "Terminate instance [$INSTANCE_ID]"
+  echo "Terminate this instance [$INSTANCE_ID]"
   aws ec2 terminate-instances --instance-ids $INSTANCE_ID --region $REGION
   
   echo "user-data completed successfully."
